@@ -23,19 +23,19 @@ image used to serve.
 
 ```
 bouncing-ball/
-├── pom.xml
-├── src/
-│   ├── main/java/com/codingcompany/bounce/
-│   │   ├── Ball.java       # position, velocity, size, color, move/bounce logic
-│   │   └── Bounce.java     # JPanel animation loop + main() entry point
-│   └── test/java/com/codingcompany/bounce/
-│       └── BallTest.java   # JUnit 5 tests for movement & edge-bounce behavior
-├── docs/
-│   ├── uml/
-│   │   ├── class-diagram.puml
-│   │   └── class-diagram.png
-│   └── infographic.png
-└── (CI workflow lives at repo root: .github/workflows/ci.yml)
+  pom.xml
+  src/
+    main/java/com/codingcompany/bounce/
+      Ball.java       (position, velocity, size, color, move/bounce logic)
+      Bounce.java     (JPanel animation loop + main() entry point)
+    test/java/com/codingcompany/bounce/
+      BallTest.java   (JUnit 5 tests for movement & edge-bounce behavior)
+  docs/
+    uml/
+      class-diagram.puml
+      class-diagram.png
+    infographic.png
+  (CI workflow lives at repo root: .github/workflows/ci.yml)
 ```
 
 ## Building and running
@@ -87,6 +87,6 @@ folder.
 
 ## Credits
 
-Inspired by the "Follow the Bouncing Ball" chapter of *Java Game
-Programming For Dummies* (Holder & Bell, 1998) — reimplemented from
+Inspired by the "Follow the Bouncing Ball" chapter of Java Game
+Programming For Dummies (Holder & Bell, 1998) — reimplemented from
 scratch for modern Java/Swing rather than reproduced from the book.
