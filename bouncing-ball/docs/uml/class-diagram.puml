@@ -1,0 +1,36 @@
+@startuml Bounce Class Diagram
+
+skinparam classAttributeIconSize 0
+
+class Ball {
+  - x : double
+  - y : double
+  - dx : double
+  - dy : double
+  - size : int
+  - color : Color
+  + Ball(x: double, y: double, dx: double, dy: double, size: int, color: Color)
+  + move(bounds: Rectangle) : void
+  + draw(g: Graphics) : void
+  + getX() : double
+  + getY() : double
+  + getDx() : double
+  + getDy() : double
+  + getSize() : int
+}
+
+class Bounce {
+  + {static} WIDTH : int
+  + {static} HEIGHT : int
+  + {static} FRAME_DELAY_MS : int
+  - ball : Ball
+  - bounds : Rectangle
+  + Bounce()
+  # paintComponent(g: Graphics) : void
+  + {static} main(args: String[]) : void
+}
+
+Bounce "1" *-- "1" Ball : animates
+Bounce --|> JPanel
+
+@enduml
