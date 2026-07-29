@@ -1,0 +1,54 @@
+# NOTE: GitHub's API requires a token with the "workflow" OAuth scope to
+# create or update files under .github/workflows/, and the connected
+# integration here doesn't have that scope. So this file is checked in
+# here as a copy-ready reference instead of being live at
+# .github/workflows/ci.yml.
+#
+# To activate it: copy this file's content into a new file at
+# .github/workflows/ci.yml (via the GitHub web UI "Add file" button,
+# or `git mv bouncing-ball/ci-workflow.yml .github/workflows/ci.yml`
+# locally and push). Once it's under .github/workflows/, GitHub Actions
+# will pick it up automatically on the next push.
+
+name: CI
+
+on:
+  push:
+    branches: [ "main" ]
+    paths:
+      - "bouncing-ball/**"
+  pull_request:
+    branches: [ "main" ]
+    paths:
+      - "bouncing-ball/**"
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Build & Test
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: bouncing-ball
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          java-version: "21"
+          distribution: "temurin"
+          cache: maven
+
+      - name: Build and run tests
+        run: mvn -B verify
+
+      - name: Publish test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: surefire-reports
+          path: bouncing-ball/target/surefire-reports/
+          if-no-files-found: ignore
